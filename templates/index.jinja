@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Mains Power Controller</title>
+
+    <!-- Bootstrap -->
+    <link href="static/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="container">
+        <div class="header clearfix">
+            <nav>
+                <h1></h1>
+            </nav>
+        </div>
+        <div class="jumbotron">
+            <div class="text-center">
+                <h1>Mains Power Controller</h1>
+                <p class="lead">Toggle the mains power socket.</p>
+            </div>
+        </div>
+        <div>
+            {% if status == "True" %}
+            <div class="alert alert-success text-center" role="alert">
+                <h2>Current Printer State: ON </h2> {% elif status == "False" %}
+                <div class="alert alert-danger text-center" role="alert">
+                    <h2>Current Printer State: OFF </h2> {% else %}
+                    <div class="alert alert-info text-center" role="alert">
+                        <h2>Current Printer State: UNKNOWN </h2> {% endif %}
+                    </div>
+
+                    {% if areyousure == "True" %}
+                    <div class="alert alert-danger text-center" role="alert">
+                        <h2>Switch off the printer, are you sure?</h2> {% else %} {% endif %}
+
+                    </div>
+                    <div class="jumbotron">
+                        <div class="row">
+                            {% if status == "True" %}
+                            <div class="col-xs-6"><a class="btn btn-success btn-lg btn-block disabled" href="/on" role="button">ON</a></div>
+                            {% if areyousure == "True" %}
+                            <div class="col-xs-6"><a class="btn btn-danger btn-lg btn-block" href="/off">OFF (I'M SURE)</a></div>
+                            {% else %}
+                            <div class="col-xs-6"><a class="btn btn-danger btn-lg btn-block" href="/areyousure">OFF</a></div>
+                            {% endif %} {% elif status == "False" %}
+                            <div class="col-xs-6"><a class="btn btn-success btn-lg btn-block" href="/on" role="button">ON</a></div>
+                            {% if areyousure == "True" %}
+                            <div class="col-xs-6"><a class="btn btn-danger btn-lg btn-block disabled" href="/off">OFF (I'M SURE)</a></div>
+                            {% else %}
+                            <div class="col-xs-6"><a class="btn btn-danger btn-lg btn-block disabled" href="/areyousure">OFF</a></div>
+                            {% endif %} {% endif %}
+                        </div>
+                    </div>
+
+
+                    <footer class="footer">
+                        <p>© 2016 Berkely Materalization, Inc.</p>
+                    </footer>
+
+
+                </div>
+
+
+                <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+                <!-- Include all compiled plugins (below), or include individual files as needed -->
+                <script src="static/bootstrap.min.js"></script>
+</body>
+
+</html>
